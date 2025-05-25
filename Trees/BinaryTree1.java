@@ -80,22 +80,34 @@ public class BinaryTree1 {
             }
 
         }
+
+        //height of the tree
+        public static int height(Node root) {
+            if(root==null){
+                return 0;
+            }
+            int lh=height(root.left);
+            int rh=height(root.right);
+            return Math.max(lh, rh) + 1;
+        }
     }
 
     public static void main(String args[]) {
-        int Nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+        int Nodes[] = { 1,2,4,8,-1,-1,9,-1,-1,5,-1,-1,3,6,-1,-1,7,-1,-1 };
         BinaryTree tree=new BinaryTree();
         Node root = tree.buildTree(Nodes);
-        System.out.println("binary tree created successfully with root value:"+ root.data);
-        System.out.print("Preorder Traversal: ");
-        tree.preorder(root);
-        System.out.println("\nInorder Traversal: ");
-        tree.inorder(root);
-        System.out.println("\nPostorder Traversal: ");
-        tree.postorder(root);
+        // System.out.println("binary tree created successfully with root value:"+ root.data);
+        // System.out.print("Preorder Traversal: ");
+        // tree.preorder(root);
+        // System.out.println("\nInorder Traversal: ");
+        // tree.inorder(root);
+        // System.out.println("\nPostorder Traversal: ");
+        // tree.postorder(root);
 
-        System.out.println("\nLevel Order Traversal: ");
-        tree.levelOrder(root);
+        // System.out.println("\nLevel Order Traversal: ");
+        // tree.levelOrder(root);
+
+        System.out.println("\nHeight of the tree: " + tree.height(root));
 
 
     }
