@@ -90,6 +90,26 @@ public class BinaryTree1 {
             int rh=height(root.right);
             return Math.max(lh, rh) + 1;
         }
+        //count of nodes in the tree
+        public static  int countNodes(Node root){
+            if(root ==null){
+                return 0;
+
+            }
+            int leftCount = countNodes(root.left);
+            int rightCount = countNodes(root.right);
+
+            return leftCount + rightCount + 1;
+        }
+        //sum of nodes in the tree
+        public static int sumOfNodes(Node root){
+            if(root==null)
+            return 0;
+            int leftSum = sumOfNodes(root.left);
+            int rightSum = sumOfNodes(root.right);
+            return leftSum + rightSum + root.data;
+        }
+
     }
 
     public static void main(String args[]) {
@@ -107,7 +127,8 @@ public class BinaryTree1 {
         // System.out.println("\nLevel Order Traversal: ");
         // tree.levelOrder(root);
 
-        System.out.println("\nHeight of the tree: " + tree.height(root));
+        // System.out.println("\nCount of the tree: " + tree.countNodes(root));
+        System.out.print("sum of the nodes in thsb tree:"+tree.sumOfNodes(root));
 
 
     }
