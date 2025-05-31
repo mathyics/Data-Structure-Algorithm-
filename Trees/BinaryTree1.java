@@ -1,4 +1,4 @@
-package Trees;
+
 import java.util.*;
 public class BinaryTree1 {
     static class Node {
