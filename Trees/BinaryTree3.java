@@ -100,6 +100,28 @@ class BinaryTree3{
 
         return d1 + d2;
     }
+    //Kth Ancestor of a Node in a Binary Tree
+    public static int KthAncestor(Node root, int n, int k){
+        if(root==null) 
+        return -1;
+
+        if(root.data==n){
+            return 0;
+        }
+       int  leftDist=KthAncestor(root.left, n, k);
+        int rightDist=KthAncestor(root.right, n, k);
+
+        int max= Math.max(leftDist,rightDist);
+        if(max==-1){// left and right both are -1
+            return -1;
+        }
+        if(max+1==k){
+            System.out.println("The " + k + "th ancestor of node " + n + " is: " + root.data);
+            return -1; // return -1 to indicate that we found the kth ancestor
+        }
+        return max+1;
+
+    }
 
 
     public static void main(String[] args) {
@@ -117,8 +139,10 @@ class BinaryTree3{
     //     System.out.println();
    
     // minDistance(root, 4, 5);
-        int n1 = 4, n2 = 6;
-        int distance = MinDistance(root, n1, n2);
-        System.out.println("Minimum distance between " + n1 + " and " + n2 + " is: " + distance);
+        // // int n1 = 4, n2 = 6;
+        // int distance = MinDistance(root, n1, n2);
+        // System.out.println("Minimum distance between " + n1 + " and " + n2 + " is: " + distance);
+        int n= 4, k=2;
+        KthAncestor(root, n, k);
     }
 }
