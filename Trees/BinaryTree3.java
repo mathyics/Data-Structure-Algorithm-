@@ -73,6 +73,34 @@ class BinaryTree3{
         return root;
     }
 
+    //Minimum Distance Between Two Nodes in a Binary Tree
+    public static int distanceFromLca(Node lca , int n ){
+        if(lca==null){
+            return -1;
+        }
+        if(lca.data==n){
+            return 0;
+        }
+        int leftDistance = distanceFromLca(lca.left, n);
+        int rightDistance = distanceFromLca(lca.right, n);
+        if(leftDistance==-1 && rightDistance==-1){
+            return -1;
+        }else if(leftDistance==-1){
+            return rightDistance + 1;
+        }else{
+            return leftDistance + 1;
+        }
+    }
+
+
+    public static int MinDistance(Node root, int n1,int n2){
+        Node lca =lca2(root,n1,n2);
+        int d1 = distanceFromLca(lca, n1);
+        int d2 = distanceFromLca(lca, n2);
+
+        return d1 + d2;
+    }
+
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -87,12 +115,10 @@ class BinaryTree3{
     //     System.out.println("Nodes at level " + k + ":");
     //     kLevel(root, 0, k);
     //     System.out.println();
-    int n1 = 4, n2 = 7;
-        Node lcaNode = lca2(root, n1, n2);
-        if (lcaNode != null) {
-            System.out.println("LCA of " + n1 + " and " + n2 + " is: " + lcaNode.data);
-        } else {
-            System.out.println("LCA not found.");
-        }
+   
+    // minDistance(root, 4, 5);
+        int n1 = 4, n2 = 6;
+        int distance = MinDistance(root, n1, n2);
+        System.out.println("Minimum distance between " + n1 + " and " + n2 + " is: " + distance);
     }
 }
