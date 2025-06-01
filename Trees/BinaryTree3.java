@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 class BinaryTree3{
@@ -122,6 +123,27 @@ class BinaryTree3{
         return max+1;
 
     }
+    // Transform a Binary Tree into Sum Tree
+    public static int transform(Node root){
+        if(root==null)   
+        return 0;
+        int leftChild= transform(root.left);
+        int rightChild= transform(root.right);
+
+        int oldValue = root.data;
+        int newLeft= root.left==null?0:root.left.data;
+        int newRight= root.right==null?0:root.right.data;
+        root.data = leftChild + rightChild + newLeft + newRight;
+
+        return oldValue;
+    }
+    public static void preOrder(Node root){
+        if(root==null)
+        return;
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
 
 
     public static void main(String[] args) {
@@ -142,7 +164,11 @@ class BinaryTree3{
         // // int n1 = 4, n2 = 6;
         // int distance = MinDistance(root, n1, n2);
         // System.out.println("Minimum distance between " + n1 + " and " + n2 + " is: " + distance);
-        int n= 4, k=2;
-        KthAncestor(root, n, k);
+        // int n= 4, k=2;
+        // KthAncestor(root, n, k);
+
+        transform(root);
+        System.out.println("Transformed tree (Sum Tree):");
+        preOrder(root);
     }
 }
