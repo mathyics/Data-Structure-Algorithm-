@@ -23,6 +23,21 @@ public class BinarySearchTree1 {
 
         return root;
     }
+    // search in BST
+    public static boolean search(Node root, int data) {
+        if(root==null){
+            return false;
+        }
+        if(root.data==data){
+            return true;
+        }
+        if(root.data>data){
+            return search(root.left, data);
+        }else{
+            return search(root.right, data);
+        }
+    }
+
     public static void inorder(Node root){
         if(root==null){
             return;
@@ -38,6 +53,6 @@ public class BinarySearchTree1 {
             root = insert(root, arr[i]);
         }
 
-        inorder(root);
+       System.out.println(search(root,7));
     }
 }
