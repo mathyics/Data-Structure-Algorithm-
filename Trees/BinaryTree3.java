@@ -52,10 +52,27 @@ class BinaryTree3{
             if(path1.get(i)!=path2.get(i)){
                 break;
             }
-        
-        Node lca = path1.get(i-1);
-        return lca;
+
+        Node Lca = path1.get(i-1);
+        return Lca;
     }
+
+    // Lowest Common Ancestor (LCA) of a Binary Tree (Optimized)
+    public static Node lca2(Node root,int n1, int n2){
+        if(root==null||root.data==n1||root.data==n2){
+            return root;
+        }
+        Node leftLca=lca2(root.left, n1, n2);
+        Node rightLca=lca2(root.right, n1, n2);
+
+        if(leftLca==null)
+        return rightLca;
+        if(rightLca==null)
+        return leftLca;
+
+        return root;
+    }
+
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -70,8 +87,8 @@ class BinaryTree3{
     //     System.out.println("Nodes at level " + k + ":");
     //     kLevel(root, 0, k);
     //     System.out.println();
-    int n1 = 4, n2 = 5;
-        Node lcaNode = lca(root, n1, n2);
+    int n1 = 4, n2 = 7;
+        Node lcaNode = lca2(root, n1, n2);
         if (lcaNode != null) {
             System.out.println("LCA of " + n1 + " and " + n2 + " is: " + lcaNode.data);
         } else {
