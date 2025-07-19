@@ -13,9 +13,9 @@ public class BinarySearchTree1 {
             root =new Node(data);
             return root;
         }
-        if(root.data>data){
+        if(data<root.data){
             root.left=insert(root.left, data);
-        }else if(root.data<data){
+        }else if(data>root.data){
             root.right=insert(root.right, data);
         }
 
@@ -72,13 +72,36 @@ public class BinarySearchTree1 {
         }
         return root;
     }
-
+     
+    // Print in Range from K1 to K2
+    public static void printInRange(Node root , int k1, int k2){
+        if(root==null){
+            return ;
+        }
+        
+        //case 1
+        if(root.data>=k1 && root.data<=k2){
+            printInRange(root.left, k1, k2);
+            System.out.print(root.data + " ");
+            printInRange(root.right, k1, k2);
+        }
+        //case 2
+        if (root.data < k1) {
+            printInRange(root.left, k1, k2);
+            
+        }else{//case3
+            printInRange(root.right, k1, k2);
+        }
+    }
     public static Node findInorderSuccessor(Node root) {
         while(root.left != null) {
             root = root.left;
         }
         return root;
     }
+
+
+    //
     public static void main(String[] args) {
         int [] arr = {8,5,3,1,4,6,10,11,14};
         Node root = null;
