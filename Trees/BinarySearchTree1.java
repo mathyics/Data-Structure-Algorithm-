@@ -1,3 +1,4 @@
+import java.util.*;
 public class BinarySearchTree1 {
     public static class Node{
         int data;
@@ -101,14 +102,29 @@ public class BinarySearchTree1 {
     }
 
 
-    //
+    //print Root to leaf path
+    public static void printRoottoLeafPath(Node root, ArrayList<Integer> path){
+
+        if(root == null) {
+            return;
+        }
+        path.add(root.data);
+        if(root.left==null&&root.right==null){
+            System.out.println("" + path);
+        }
+        printRoottoLeafPath(root.left, path);
+        printRoottoLeafPath(root.right, path);
+
+        path.remove(path.size()-1);
+    }
     public static void main(String[] args) {
         int [] arr = {8,5,3,1,4,6,10,11,14};
         Node root = null;
+        ArrayList<Integer> path = new ArrayList<>();
         for(int i=0;i<arr.length;i++){
             root = insert(root, arr[i]);
         }
 
-       System.out.println(search(root,7));
+        printRoottoLeafPath(root, path);
     }
 }
