@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class BinarySearchTree1 {
     public static class Node{
@@ -117,6 +118,24 @@ public class BinarySearchTree1 {
 
         path.remove(path.size()-1);
     }
+
+
+    // validate BST
+
+    public static boolean isvaldBST(Node root, Node min, Node max){
+        if(root==null){
+            return true;
+        }
+        if(min!=null&&root.data<=min.data){
+            return false;
+        }
+        else if(max!=null&& root.data>= max.data){
+            return false;
+        }
+
+        return (isvaldBST(root.left, min, root)&&isvaldBST(root.right,root, max));
+        
+    }
     public static void main(String[] args) {
         int [] arr = {8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -125,6 +144,7 @@ public class BinarySearchTree1 {
             root = insert(root, arr[i]);
         }
 
-        printRoottoLeafPath(root, path);
+        // printRoottoLeafPath(root, path);
+        System.out.println(isvaldBST(root, null, null));
     }
 }
