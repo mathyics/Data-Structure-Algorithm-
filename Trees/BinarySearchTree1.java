@@ -136,8 +136,30 @@ public class BinarySearchTree1 {
         return (isvaldBST(root.left, min, root)&&isvaldBST(root.right,root, max));
         
     }
+    // Mirror BST
+    public static Node Mirror(Node root){
+        if(root==null){
+            return null;
+        }
+        Node left=Mirror(root.left);
+        Node right=Mirror(root.right);
+
+        root.left= right;
+        root.right=left;
+
+    return root;
+    }
+    public static void preorder(Node root){
+        if(root==null){
+            return;
+        }
+        System.out.print(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
+    
     public static void main(String[] args) {
-        int [] arr = {8,5,3,1,4,6,10,11,14};
+        int [] arr = {8,5,10,3,6,11};
         Node root = null;
         ArrayList<Integer> path = new ArrayList<>();
         for(int i=0;i<arr.length;i++){
@@ -145,6 +167,9 @@ public class BinarySearchTree1 {
         }
 
         // printRoottoLeafPath(root, path);
-        System.out.println(isvaldBST(root, null, null));
+        
+        Mirror(root);
+        preorder(root);
+        
     }
 }
