@@ -74,7 +74,7 @@ public class BinarySearchTree2 {
     //Size of Largest BST in a Binary Tree
 
     static class Info{
-        int size;
+        int size ;
         int min;
         int max;
         boolean isBST;
@@ -108,6 +108,37 @@ public class BinarySearchTree2 {
         }
 
         return new Info (false, size ,min, max);
+    }
+    // Merge 2 BSt 
+
+    public static Node mergeBST(Node root1, Node root2){
+        ArrayList<Integer> inorder1=new ArrayList<>();
+        ArrayList<Integer> inorder2=new ArrayList<>();
+        inorder(root1, inorder1);
+        inorder(root2, inorder2);
+        ArrayList<Integer> mergedInorder = new ArrayList<>();
+
+        int i=0,j=0;
+        while(i<inorder1.size()&&j<inorder2.size()){
+
+            if(inorder1.get(i)<inorder2.get(j)){
+                mergedInorder.add(inorder1.get(i));
+                i++;
+            }else{
+                mergedInorder.add(inorder2.get(j));
+                j++;
+            }
+        }
+        while(j!=inorder2.size()){
+            mergedInorder.add(inorder2.get(j));
+            j++;
+        }
+        while(i!=inorder1.size()){
+            mergedInorder.add(inorder1.get(i));
+            i++;
+        }
+        return createBST1(mergedInorder, 0, mergedInorder.size()-1);
+
     }
 
     public static void main(String[] args) {
