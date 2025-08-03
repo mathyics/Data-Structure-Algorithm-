@@ -1,5 +1,4 @@
 import java.util.*;
-import javax.xml.stream.events.EndDocument;
 class Greedy{
     public static void main(String[] args) {
 //         int start[] = {0,1,3,5,5,8};
@@ -67,18 +66,34 @@ class Greedy{
 
 
 
-        int A[]={4,1,8,7};
-        int B[]={2,3,6,5};
+        // int A[]={4,1,8,7};
+        // int B[]={2,3,6,5};
 
-        Arrays.sort(A);
-        Arrays.sort(B);
-        int minDiff=0;
-        for(int i=0;i<A.length;i++){
-            minDiff+=Math.abs(A[i]-B[i]);
+        // Arrays.sort(A);
+        // Arrays.sort(B);
+        // int minDiff=0;
+        // for(int i=0;i<A.length;i++){
+        //     minDiff+=Math.abs(A[i]-B[i]);
+        // }
+
+        // System.out.println("Minimum Absolute difference is: " + minDiff);
+
+
+        int pairs[][]={{5,24},{39,60},{15,28},{27,40},{50,90}};
+        Arrays.sort(pairs, Comparator.comparingDouble(o->o[1]));
+        int chainLen=1;
+        int chainEnd=pairs[0][1];
+
+        for(int i=0;i<pairs.length;i++){
+            if(chainEnd<pairs[i][0]){
+                chainLen++;
+                chainEnd=pairs[i][1];
+            }
+
         }
+        System.out.println("Maximum chain length is: " + chainLen);
+        
 
-        System.out.println("Minimum Absolute difference is: " + minDiff);
-       
 
     }
 }
