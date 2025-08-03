@@ -35,35 +35,51 @@ class Greedy{
 
 
 
-        int val[]={60, 100, 120};
-        int wt[]={10, 20, 30};
-        int W=50;
+        // int val[]={60, 100, 120};
+        // int wt[]={10, 20, 30};
+        // int W=50;
 
-        double ratio[][] = new double[val.length][2];
-        // 0 col=> index , 1 col=> ratio
-        for(int i=0;i<val.length;i++){
-            ratio[i][0]=i;
-            ratio[i][1]=(double)val[i]/wt[i];
-        }
-        // sort using lamda expression
-        Arrays.sort(ratio, Comparator.comparingDouble(o->o[1]));
-        int capacity=W;
-        int finalval=0;
+        // double ratio[][] = new double[val.length][2];
+        // // 0 col=> index , 1 col=> ratio
+        // for(int i=0;i<val.length;i++){
+        //     ratio[i][0]=i;
+        //     ratio[i][1]=(double)val[i]/wt[i];
+        // }
+        // // sort using lamda expression
+        // Arrays.sort(ratio, Comparator.comparingDouble(o->o[1]));
+        // int capacity=W;
+        // int finalval=0;
         
-        for(int i=val.length-1;i>=0;i--){
-           int idx=(int)ratio[i][0];
+        // for(int i=val.length-1;i>=0;i--){
+        //    int idx=(int)ratio[i][0];
 
-           if(capacity>=wt[idx]){
-            finalval= finalval + val[idx];
-            capacity=capacity-wt[idx];
-           }else{
-            finalval+=(capacity*ratio[i][1]);
-            capacity=0;
-            break;
-           }
+        //    if(capacity>=wt[idx]){
+        //     finalval= finalval + val[idx];
+        //     capacity=capacity-wt[idx];
+        //    }else{
+        //     finalval+=(capacity*ratio[i][1]);
+        //     capacity=0;
+        //     break;
+        //    }
+        // }
+        // System.out.println("Maximum value in Knapsack = " + finalval);
+        // System.out.println();
+
+
+
+        int A[]={4,1,8,7};
+        int B[]={2,3,6,5};
+
+        Arrays.sort(A);
+        Arrays.sort(B);
+        int minDiff=0;
+        for(int i=0;i<A.length;i++){
+            minDiff+=Math.abs(A[i]-B[i]);
         }
-        System.out.println("Maximum value in Knapsack = " + finalval);
 
+        System.out.println("Minimum Absolute difference is: " + minDiff);
+       
 
     }
 }
+
