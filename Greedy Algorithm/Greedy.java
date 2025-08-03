@@ -79,19 +79,37 @@ class Greedy{
         // System.out.println("Minimum Absolute difference is: " + minDiff);
 
 
-        int pairs[][]={{5,24},{39,60},{15,28},{27,40},{50,90}};
-        Arrays.sort(pairs, Comparator.comparingDouble(o->o[1]));
-        int chainLen=1;
-        int chainEnd=pairs[0][1];
+        // int pairs[][]={{5,24},{39,60},{15,28},{27,40},{50,90}};
+        // Arrays.sort(pairs, Comparator.comparingDouble(o->o[1]));
+        // int chainLen=1;
+        // int chainEnd=pairs[0][1];
 
-        for(int i=0;i<pairs.length;i++){
-            if(chainEnd<pairs[i][0]){
-                chainLen++;
-                chainEnd=pairs[i][1];
+        // for(int i=0;i<pairs.length;i++){
+        //     if(chainEnd<pairs[i][0]){
+        //         chainLen++;
+        //         chainEnd=pairs[i][1];
+        //     }
+
+        // }
+        // System.out.println("Maximum chain length is: " + chainLen);
+
+
+        //Indian Coin Change Problem
+        Integer coins[]={1,2,5,10,20,50,100,500,2000};
+        Arrays.sort(coins,Comparator.reverseOrder());
+
+        int amount=590;
+        int ans=0;
+
+        for(int i=0;i<coins.length;i++){
+            if(coins[i]<=amount){
+                while(coins[i]<=amount){
+                    ans++;
+                    amount-=coins[i];
+                }
             }
-
         }
-        System.out.println("Maximum chain length is: " + chainLen);
+        System.out.println("Minimum number of coins required: " + ans);
         
 
 
