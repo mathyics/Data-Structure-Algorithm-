@@ -1,5 +1,16 @@
 import java.util.*;
 class Greedy{
+    static class Job{
+        int id;
+        int deadline;
+        int profit;
+
+       public Job(int i,int d,int p){
+            id=i;
+            deadline=d;
+            profit=p;
+        }
+    }
     public static void main(String[] args) {
 //         int start[] = {0,1,3,5,5,8};
 //         int finish[] = {6,2,4,7,9,9};
@@ -95,24 +106,43 @@ class Greedy{
 
 
         //Indian Coin Change Problem
-        Integer coins[]={1,2,5,10,20,50,100,500,2000};
-        Arrays.sort(coins,Comparator.reverseOrder());
+        // Integer coins[]={1,2,5,10,20,50,100,500,2000};
+        // Arrays.sort(coins,Comparator.reverseOrder());
 
-        int amount=590;
-        int ans=0;
+        // int amount=590;
+        // int ans=0;
 
-        for(int i=0;i<coins.length;i++){
-            if(coins[i]<=amount){
-                while(coins[i]<=amount){
-                    ans++;
-                    amount-=coins[i];
-                }
+        // for(int i=0;i<coins.length;i++){
+        //     if(coins[i]<=amount){
+        //         while(coins[i]<=amount){
+        //             ans++;
+        //             amount-=coins[i];
+        //         }
+        //     }
+        // }
+        // System.out.println("Minimum number of coins required: " + ans);
+        
+        int jobs[][]={{4,20},{1,10},{1,40},{1,30}};
+
+        ArrayList<Job> jobList = new ArrayList<>();
+        for(int i=0;i<jobs.length;i++){
+            jobList.add(new Job(i,jobs[i][0],jobs[i][1]));
+        }
+
+        Collections.sort(jobList,(a,b)->b.profit-a.profit);
+
+        ArrayList<Integer> seq= new ArrayList<>();
+        int time=0;
+
+        for(int i=0;i<jobList.size();i++){
+            Job curr=jobList.get(i);
+            if(curr.deadline>time){
+                time++;
+                seq.add(curr.id+1);
             }
         }
-        System.out.println("Minimum number of coins required: " + ans);
-        
-
-
+        System.out.println("Maximum profit job sequence: " + seq);
+        System.out.println("Total time taken: " + time);
     }
 }
 
