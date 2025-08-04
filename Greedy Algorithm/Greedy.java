@@ -122,27 +122,61 @@ class Greedy{
         // }
         // System.out.println("Minimum number of coins required: " + ans);
         
-        int jobs[][]={{4,20},{1,10},{1,40},{1,30}};
+    //     int jobs[][]={{4,20},{1,10},{1,40},{1,30}};
 
-        ArrayList<Job> jobList = new ArrayList<>();
-        for(int i=0;i<jobs.length;i++){
-            jobList.add(new Job(i,jobs[i][0],jobs[i][1]));
+    //     ArrayList<Job> jobList = new ArrayList<>();
+    //     for(int i=0;i<jobs.length;i++){
+    //         jobList.add(new Job(i,jobs[i][0],jobs[i][1]));
+    //     }
+
+    //     Collections.sort(jobList,(a,b)->b.profit-a.profit);
+
+    //     ArrayList<Integer> seq= new ArrayList<>();
+    //     int time=0;
+
+    //     for(int i=0;i<jobList.size();i++){
+    //         Job curr=jobList.get(i);
+    //         if(curr.deadline>time){
+    //             time++;
+    //             seq.add(curr.id+1);
+    //         }
+    //     }
+    //     System.out.println("Maximum profit job sequence: " + seq);
+    //     System.out.println("Total time taken: " + time);
+
+      Integer costVer[] = {2,1,3,1,4};
+      Integer costHor[] = {4,1,2};
+      Arrays.sort(costVer, Collections.reverseOrder());
+      Arrays.sort(costHor, Collections.reverseOrder());
+
+      int h=0,v=0;
+      int hp=1, vp=1;
+      int cost=0;
+      while(h<costHor.length&&v<costVer.length){
+        if(costHor[h]>=costVer[v]){
+            cost+=vp*costHor[h];
+            hp++;
+            h++;
+        }else{
+            cost+=hp*costVer[v];
+            vp++;
+            v++;
         }
+      }
+      while(h<costHor.length){
+         cost+=vp*costHor[h];
+            hp++;
+            h++;
+      }
+      while(v<costVer.length){
+           cost+=hp*costVer[v];
+            vp++;
+            v++;
+      }
+        System.out.println("Minimum cost to connect all points: " + cost);
 
-        Collections.sort(jobList,(a,b)->b.profit-a.profit);
 
-        ArrayList<Integer> seq= new ArrayList<>();
-        int time=0;
-
-        for(int i=0;i<jobList.size();i++){
-            Job curr=jobList.get(i);
-            if(curr.deadline>time){
-                time++;
-                seq.add(curr.id+1);
-            }
-        }
-        System.out.println("Maximum profit job sequence: " + seq);
-        System.out.println("Total time taken: " + time);
-    }
+      }
+    
 }
 
