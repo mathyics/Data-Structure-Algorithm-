@@ -39,7 +39,7 @@ public class Hashing {
 
 
         // Looping through the map
-        HashMap<String, Integer> map = new HashMap<>(); 
+        TreeMap<String, Integer> map = new TreeMap<>(); 
         map.put("India", 100);
 
         map.put("USA", 50);
@@ -48,6 +48,7 @@ public class Hashing {
         map.put("Germany", 120);
 
         Set<String> keys=map.keySet();
+        System.out.println("map: " + map);
         System.out.println("Keys in the map:"); 
         for(String k: keys){
             System.out.println("key:"+k+"  value:"+map.get(k));
