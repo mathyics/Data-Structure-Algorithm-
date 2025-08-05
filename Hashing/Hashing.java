@@ -179,24 +179,43 @@ public class Hashing {
         //     start = tickets.get(start);
 
         // Largest subarray with 0 sum
-        int[] arr={15, -2,2,-8,1,7,10,23};
-        HashMap<Integer,Integer> map= new HashMap<>();
+        // int[] arr={15, -2,2,-8,1,7,10,23};
+        // HashMap<Integer,Integer> map= new HashMap<>();
+        // int sum=0;
+        // int maxLen=0;
+        // for(int j=0;j<arr.length;j++){
+        //     sum+=arr[j];
+        //     if(map.containsKey(sum)){
+        //         maxLen=Math.max(maxLen, j-map.get(sum));
+        //     }else{
+        //         map.put(sum, j);
+        //     }
+        // }
+        // if(maxLen > 0){
+        //     System.out.println("Largest subarray with 0 sum has length: " + maxLen);
+        // } else {
+        //     System.out.println("No subarray with 0 sum found.");
+
+        // }
+
+        int arr[] ={10,2,-2,-20,10};
+        int k = -10;
+        HashMap<Integer, Integer> map = new HashMap<>();
         int sum=0;
-        int maxLen=0;
+        int ans=0;
+        map.put(0,1);
+
         for(int j=0;j<arr.length;j++){
             sum+=arr[j];
-            if(map.containsKey(sum)){
-                maxLen=Math.max(maxLen, j-map.get(sum));
-            }else{
-                map.put(sum, j);
-            }
-        }
-        if(maxLen > 0){
-            System.out.println("Largest subarray with 0 sum has length: " + maxLen);
-        } else {
-            System.out.println("No subarray with 0 sum found.");
+            if(map.containsKey(sum-k)){
+                ans+=map.get(sum-k);
 
+            }
+                map.put(sum, map.getOrDefault(sum, 0)+1);
+            
         }
+
+        System.out.println("answer is : " + ans);
         
 
 
