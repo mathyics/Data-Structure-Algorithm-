@@ -103,13 +103,13 @@ public class Hashing {
     //         System.out.println(s + " and " + t + " are not anagrams.");
     //     }
          //Iterating through a HashSet
-         HashSet<String> set = new HashSet<>();
-            set.add("apple");
-            set.add("banana");
-            set.add("cherry");
-            set.add("date");
-            set.add("apple"); // Duplicate, will not be added
-            System.out.println("HashSet: " + set); 
+        //  HashSet<String> set = new HashSet<>();
+        //     set.add("apple");
+        //     set.add("banana");
+        //     set.add("cherry");
+        //     set.add("date");
+        //     set.add("apple"); // Duplicate, will not be added
+        //     System.out.println("HashSet: " + set); 
             
             // using iterator to loop through the HashSet
             // Iterator<String> it= set.iterator();
@@ -118,9 +118,37 @@ public class Hashing {
             //     System.out.println(it.next());
             // }
             // using for-each loop to loop through the HashSet
-            for(String c:set){
-                System.out.println( c);
+            // for(String c:set){
+            //     System.out.println( c);
+            // }
+
+            int[] arr1={7,3,9};
+            int[] arr2={7,3,9,6,2,4};
+            HashSet<Integer> set1 = new HashSet<>();
+
+            for(int i=0;i<arr1.length;i++){
+                set1.add(arr1[i]);
             }
+            for(int i=0;i<arr2.length;i++){
+                set1.add(arr2[i]);
+            }
+
+            System.out.println("Union of two arrays: " + set1);
+            System.out.println("Size of union: " + set1.size());
+
+            set1.clear();
+            for(int i=0;i<arr1.length;i++){
+                set1.add(arr1[i]);
+            }
+          int count=0;
+            for(int i=0;i<arr2.length;i++){
+                if(set1.contains(arr2[i])){
+                    count++;
+                    set1.remove(arr2[i]);
+                }
+            }
+            System.out.println("Intersection of two arrays: " + (count > 0 ? count : "No intersection found"));
+            System.out.println("Size of intersection: " + count);
 
     }
     
