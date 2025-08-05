@@ -95,13 +95,28 @@ public class Hashing {
         //     }
         // }
 
-        String s = "care";
-        String t = "rate";
-        if(isAnagram(s, t)){
-            System.out.println(s + " and " + t + " are anagrams.");
-        } else {
-            System.out.println(s + " and " + t + " are not anagrams.");
-        }
+    //     String s = "care";
+    //     String t = "rate";
+    //     if(isAnagram(s, t)){
+    //         System.out.println(s + " and " + t + " are anagrams.");
+    //     } else {
+    //         System.out.println(s + " and " + t + " are not anagrams.");
+    //     }
+         //Iterating through a HashSet
+         HashSet<String> set = new HashSet<>();
+            set.add("apple");
+            set.add("banana");
+            set.add("cherry");
+            set.add("date");
+            set.add("apple"); // Duplicate, will not be added
+            System.out.println("HashSet: " + set); 
+            
+            // using iterator to loop through the HashSet
+            Iterator<String> it= set.iterator();
+            System.out.println("Iterating through HashSet:");
+            while(it.hasNext()){
+                System.out.println(it.next());
+            }
     }
     
 }
