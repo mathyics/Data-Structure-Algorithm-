@@ -22,6 +22,21 @@ public class Hashing {
         }
         return map.isEmpty();
     }
+    // iternary from ticket
+    public static String getStart(HashMap<String, String> tickets) {
+        HashMap<String, String> revMap= new HashMap<>();
+        for(String key:tickets.keySet()){
+            revMap.put(tickets.get(key), key);
+        }
+         for(String key:tickets.keySet()){
+            if(!revMap.containsKey(key)){
+                return key;
+            }
+         }
+
+         return null;
+    }
+
     public static void main(String[] args) {
         //Create HashMap
         // HashMap<String,Integer> map= new HashMap<>();
@@ -122,33 +137,49 @@ public class Hashing {
             //     System.out.println( c);
             // }
 
-            int[] arr1={7,3,9};
-            int[] arr2={7,3,9,6,2,4};
-            HashSet<Integer> set1 = new HashSet<>();
+        //     int[] arr1={7,3,9};
+        //     int[] arr2={7,3,9,6,2,4};
+        //     HashSet<Integer> set1 = new HashSet<>();
 
-            for(int i=0;i<arr1.length;i++){
-                set1.add(arr1[i]);
-            }
-            for(int i=0;i<arr2.length;i++){
-                set1.add(arr2[i]);
-            }
+        //     for(int i=0;i<arr1.length;i++){
+        //         set1.add(arr1[i]);
+        //     }
+        //     for(int i=0;i<arr2.length;i++){
+        //         set1.add(arr2[i]);
+        //     }
 
-            System.out.println("Union of two arrays: " + set1);
-            System.out.println("Size of union: " + set1.size());
+        //     System.out.println("Union of two arrays: " + set1);
+        //     System.out.println("Size of union: " + set1.size());
 
-            set1.clear();
-            for(int i=0;i<arr1.length;i++){
-                set1.add(arr1[i]);
-            }
-          int count=0;
-            for(int i=0;i<arr2.length;i++){
-                if(set1.contains(arr2[i])){
-                    count++;
-                    set1.remove(arr2[i]);
-                }
-            }
-            System.out.println("Intersection of two arrays: " + (count > 0 ? count : "No intersection found"));
-            System.out.println("Size of intersection: " + count);
+        //     set1.clear();
+        //     for(int i=0;i<arr1.length;i++){
+        //         set1.add(arr1[i]);
+        //     }
+        //   int count=0;
+        //     for(int i=0;i<arr2.length;i++){
+        //         if(set1.contains(arr2[i])){
+        //             count++;
+        //             set1.remove(arr2[i]);
+        //         }
+        //     }
+        //     System.out.println("Intersection of two arrays: " + (count > 0 ? count : "No intersection found"));
+        //     System.out.println("Size of intersection: " + count);
+
+        HashMap<String, String> tickets= new HashMap<>();
+        tickets.put("chennai","bangalore");
+        tickets.put("mumbai","delhi");
+        tickets.put("goa","chennai");
+        tickets.put("delhi","goa");
+
+        String start = getStart(tickets);
+        System.out.print(start);
+
+        for(String key:tickets.keySet()){
+            System.out.print(" -> "+tickets.get(start));
+            start = tickets.get(start);
+        }
+        
+
 
     }
     
