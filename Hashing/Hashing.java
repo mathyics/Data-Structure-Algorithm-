@@ -112,11 +112,16 @@ public class Hashing {
             System.out.println("HashSet: " + set); 
             
             // using iterator to loop through the HashSet
-            Iterator<String> it= set.iterator();
-            System.out.println("Iterating through HashSet:");
-            while(it.hasNext()){
-                System.out.println(it.next());
+            // Iterator<String> it= set.iterator();
+            // System.out.println("Iterating through HashSet:");
+            // while(it.hasNext()){
+            //     System.out.println(it.next());
+            // }
+            // using for-each loop to loop through the HashSet
+            for(String c:set){
+                System.out.println( c);
             }
+
     }
     
 }
