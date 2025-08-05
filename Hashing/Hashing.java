@@ -165,18 +165,37 @@ public class Hashing {
         //     System.out.println("Intersection of two arrays: " + (count > 0 ? count : "No intersection found"));
         //     System.out.println("Size of intersection: " + count);
 
-        HashMap<String, String> tickets= new HashMap<>();
-        tickets.put("chennai","bangalore");
-        tickets.put("mumbai","delhi");
-        tickets.put("goa","chennai");
-        tickets.put("delhi","goa");
+        // HashMap<String, String> tickets= new HashMap<>();
+        // tickets.put("chennai","bangalore");
+        // tickets.put("mumbai","delhi");
+        // tickets.put("goa","chennai");
+        // tickets.put("delhi","goa");
 
-        String start = getStart(tickets);
-        System.out.print(start);
+        // String start = getStart(tickets);
+        // System.out.print(start);
 
-        for(String key:tickets.keySet()){
-            System.out.print(" -> "+tickets.get(start));
-            start = tickets.get(start);
+        // for(String key:tickets.keySet()){
+        //     System.out.print(" -> "+tickets.get(start));
+        //     start = tickets.get(start);
+
+        // Largest subarray with 0 sum
+        int[] arr={15, -2,2,-8,1,7,10,23};
+        HashMap<Integer,Integer> map= new HashMap<>();
+        int sum=0;
+        int maxLen=0;
+        for(int j=0;j<arr.length;j++){
+            sum+=arr[j];
+            if(map.containsKey(sum)){
+                maxLen=Math.max(maxLen, j-map.get(sum));
+            }else{
+                map.put(sum, j);
+            }
+        }
+        if(maxLen > 0){
+            System.out.println("Largest subarray with 0 sum has length: " + maxLen);
+        } else {
+            System.out.println("No subarray with 0 sum found.");
+
         }
         
 
