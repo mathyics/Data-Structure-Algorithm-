@@ -1,6 +1,27 @@
 import java.util.*;
 
 public class Hashing {
+    public static boolean isAnagram(String s, String t){
+        if(s.length() != t.length()) return false;
+        HashMap<Character, Integer> map= new HashMap<>();
+
+        for(int i=0;i<s.length();i++){
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0)+1);
+        }
+
+        for(int i=0;i<t.length();i++){
+            char ch = t.charAt(i);
+            if(!map.containsKey(ch)){
+                return false;
+            }else{
+                map.put(ch,map.get(ch)-1);
+                if(map.get(ch) == 0){
+                    map.remove(ch);
+                }
+            }
+        }
+        return map.isEmpty();
+    }
     public static void main(String[] args) {
         //Create HashMap
         // HashMap<String,Integer> map= new HashMap<>();
@@ -55,23 +76,31 @@ public class Hashing {
         // }
 
         // Majority Element
-        int nums[]={1,3,2,5,1,3,1,5,1};
-        HashMap<Integer, Integer> Map = new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            if(Map.containsKey(nums[i])){
-                Map.put(nums[i],Map.get(nums[i])+1);
-            }else{
-                Map.put(nums[i], 1);
-            }
+        // int nums[]={1,3,2,5,1,3,1,5,1};
+        // HashMap<Integer, Integer> Map = new HashMap<>();
+        // for(int i=0;i<nums.length;i++){
+        //     if(Map.containsKey(nums[i])){
+        //         Map.put(nums[i],Map.get(nums[i])+1);
+        //     }else{
+        //         Map.put(nums[i], 1);
+        //     }
 
-             //Map.put(nums[i], Map.getOrDefault(nums[i], 0) + 1);
-        }
+        //      //Map.put(nums[i], Map.getOrDefault(nums[i], 0) + 1);
+        // }
 
-        Set<Integer> keys=Map.keySet();
-        for(Integer key:keys){
-            if(Map.get(key)>nums.length/3){
-                System.out.println("Majority Element: " + key + " with count: " + Map.get(key));
-            }
+        // Set<Integer> keys=Map.keySet();
+        // for(Integer key:keys){
+        //     if(Map.get(key)>nums.length/3){
+        //         System.out.println("Majority Element: " + key + " with count: " + Map.get(key));
+        //     }
+        // }
+
+        String s = "care";
+        String t = "rate";
+        if(isAnagram(s, t)){
+            System.out.println(s + " and " + t + " are anagrams.");
+        } else {
+            System.out.println(s + " and " + t + " are not anagrams.");
         }
     }
     
