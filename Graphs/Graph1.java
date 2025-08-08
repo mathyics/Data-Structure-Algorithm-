@@ -1,3 +1,4 @@
+import com.sun.source.tree.Tree;
 import java.util.*;
 public class Graph1{
     static class Edge{
@@ -36,7 +37,20 @@ public class Graph1{
                 }
             }
         }
+    }
 
+    // Has path between two vertices
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean[] visited){
+        if(src==dest) return true;
+        visited[src]=true;
+        for(int i=0;i<graph[src].size();i++){
+            Edge e= graph[src].get(i);
+            if(!visited[e.dest]&&hasPath(graph, e.dest, dest, visited))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public static void main(String[] args) {
         int V=7;
@@ -72,8 +86,8 @@ public class Graph1{
         //6 vertex
         graph[6].add(new Edge(6,5,1));
 
-        System.out.println("BFS Traversal of the graph:");
-        dfs(graph,0,new boolean[V]);
+        System.out.print("Has PAth from 0 to 5 :" + hasPath(graph, 0, 5, new boolean[V]));
+
        
     
     }
