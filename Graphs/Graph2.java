@@ -79,15 +79,16 @@ public class Graph2 {
 
         for(int i=0;i<graph[curr].size();i++){
             Edge e= graph[curr].get(i);
-            if(!visited[e.dest]&&detectCycleUtil(graph, e.dest, visited, curr)){
-                return true;
+            if(!visited[e.dest]){
+                return detectCycleUtil(graph, e.dest, visited, curr);
+             
             }
             if(visited[e.dest]&&e.dest!=parent){
                 return true;
             }
         }
 
-        return true;
+        return false;
 
     }
     public static void main(String[] args) {
@@ -98,14 +99,14 @@ public class Graph2 {
         }
         // 0 vertex
         graph[0].add(new Edge(0, 1, 1));
-        graph[0].add(new Edge(0, 2, 1));
+       // graph[0].add(new Edge(0, 2, 1));
         graph[0].add(new Edge(0, 3, 1));
 
         // 1 vertex
         graph[1].add(new Edge(1, 0, 1));
         graph[1].add(new Edge(1, 2, 1));
         // 2 vertex
-        graph[2].add(new Edge(2, 0, 1));
+        //graph[2].add(new Edge(2, 0, 1));
         graph[2].add(new Edge(2, 1, 1));
         graph[2].add(new Edge(2, 4, 1));
         // 3 vertex
