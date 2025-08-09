@@ -123,6 +123,8 @@ public class Graph2 {
         return true;
     }
     public static void main(String[] args) {
+
+        //if graph doesnt has cycle its bipartite graph;
         int V = 7;
         ArrayList<Edge>[] graph = new ArrayList[V];
         for (int i = 0; i < V; i++) {
@@ -142,12 +144,12 @@ public class Graph2 {
         graph[2].add(new Edge(2, 4, 1));
         // 3 vertex
         graph[3].add(new Edge(3, 1, 1));
-        //graph[3].add(new Edge(3, 4, 1));
+        graph[3].add(new Edge(3, 4, 1));
        
         // 4 vertex
 
         graph[4].add(new Edge(4, 2, 1));
-       // graph[4].add(new Edge(4, 3, 1));
+       graph[4].add(new Edge(4, 3, 1));
         
 
         System.out.println(isBipartite(graph));
