@@ -211,7 +211,16 @@ public class Graph2 {
         }
       }
 
-      
+      public static void printAllPath(ArrayList<Edge>[] graph,int src, int dest, String path){
+        if(src==dest){
+            System.err.println(path+dest);
+        }
+        for(int i=0;i<graph[src].size();i++){
+            Edge e=graph[src].get(i);
+            printAllPath(graph,e.dest,dest,path+src+" ");
+        }
+
+      }
 
 
     public static void main(String[] args) {
@@ -231,7 +240,7 @@ public class Graph2 {
         graph[5].add(new Edge(5, 2, 1));
         
 
-       // printAllPath(graph, 5, 1, "");
+        printAllPath(graph, 5, 1, "");
     }
 
 }
