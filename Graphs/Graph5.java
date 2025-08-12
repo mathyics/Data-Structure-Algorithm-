@@ -1,11 +1,8 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.*;
 
 public class Graph5 {
 
-    static class Edge {
+    static class Edge implements Comparable<Edge> {
         int src;
         int dest;
         int wt;
@@ -14,6 +11,10 @@ public class Graph5 {
             this.src = src;
             this.dest = dest;
             this.wt = wt;
+        }
+        @Override
+        public int compareTo(Edge e) {
+            return this.wt - e.wt;
         }
     }
 
@@ -120,7 +121,7 @@ public class Graph5 {
     }
 
     // Disjoint set DS
-    static int n=7;
+    static int n=4;
     static int[] rank = new int[n];
     static int[] parent = new int[n];
 
@@ -150,6 +151,25 @@ public class Graph5 {
             parent[b]=a;
         }
     }
+
+    public static int kruskal( ArrayList<Edge> edges,int v){
+        Collections.sort(edges);
+        int mst=0;
+        int count=0;
+        for (int i=0;count<v-1;i++){
+            Edge e=edges.get(i);
+            int a=find(e.src);
+            int b= find(e.dest);
+            if(a!=b){
+                mst+=e.wt;
+                count++;
+                union(e.src, e.dest);
+            }
+        }
+
+        return mst;
+
+    }
     public static void main(String[] args) {
         // int n=4;
         // int[][] flight={{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,300}};
@@ -167,11 +187,25 @@ public class Graph5 {
 
         //         System.out.println(connectCities(cities));
 
+        // init();
+        // union(1, 3);
+        // System.out.println(find(3));
+        // union(2,4);
+        // union(3,6);
+        // System.out.println(find(6));
+
+        int V = 4;
+        ArrayList<Edge> graph = new ArrayList<>();
         init();
-        union(1, 3);
-        System.out.println(find(3));
-        union(2,4);
-        union(3,6);
-        System.out.println(find(6));
+        
+        // 0 vertex
+        graph.add(new Edge(0, 1, 10));
+        graph.add(new Edge(0, 2, 15));
+        graph.add(new Edge(0, 3, 30));
+        graph.add(new Edge(1, 3, 40));
+        graph.add(new Edge(2, 3, 50));
+
+        System.out.println(kruskal(graph, V));
+        
     }
 }
