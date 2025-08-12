@@ -119,6 +119,37 @@ public class Graph5 {
         return finalCost;
     }
 
+    // Disjoint set DS
+    static int n=7;
+    static int[] rank = new int[n];
+    static int[] parent = new int[n];
+
+    public static void init(){
+        for(int i=0;i<n;i++){
+            parent[i]=i;
+            rank[i]=0;
+        }
+    }
+
+    public static int find(int x){
+        if(parent[x]==x){
+            return x;
+        }
+        return parent[x]=find(parent[x]);
+    }
+
+    public static void union(int a, int b){
+        a=find(a);
+        b=find(b);
+        if(rank[a]==rank[b]){
+            parent[b] = a;
+            rank[a]++;
+        }else if(rank[a]<rank[b]){
+            parent[a]=b;
+        }else{
+            parent[b]=a;
+        }
+    }
     public static void main(String[] args) {
         // int n=4;
         // int[][] flight={{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,300}};
@@ -127,14 +158,20 @@ public class Graph5 {
         // creatGraph(flight, graph);
         // System.err.println(cheastFlight(n, src,dest, k, graph));
 
-        int[][] cities = { 
-                { 0, 1, 2, 3, 4 },
-                { 1, 0, 5, 0, 7 },
-                { 2, 5, 0, 6, 0 },
-                { 3, 0, 6, 0, 0 },
-                { 4, 7, 0, 0, 0 } };
+        // int[][] cities = { 
+        //         { 0, 1, 2, 3, 4 },
+        //         { 1, 0, 5, 0, 7 },
+        //         { 2, 5, 0, 6, 0 },
+        //         { 3, 0, 6, 0, 0 },
+        //         { 4, 7, 0, 0, 0 } };
 
-                System.out.println(connectCities(cities));
+        //         System.out.println(connectCities(cities));
 
+        init();
+        union(1, 3);
+        System.out.println(find(3));
+        union(2,4);
+        union(3,6);
+        System.out.println(find(6));
     }
 }
