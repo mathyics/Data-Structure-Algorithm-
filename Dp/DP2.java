@@ -71,6 +71,34 @@ public static int knapsackTab(int val[], int wt[], int W ){
 
     return dp[n][W];
 }
+
+public static boolean targetSumSUbset(int arr[], int sum){
+    int n=arr.length;
+    boolean dp[][]= new boolean[n+1][sum+1];
+    for(int i=0;i<n+1;i++){
+        dp[i][0]=true;
+    }
+    for(int i=1;i<n+1;i++){
+        for(int j=1;j<sum+1;j++){
+            // include
+
+            int v=arr[i-1];
+            if(v<=j&&dp[i-1][j-v]==true){
+                dp[i][j]=true;
+            }else if(dp[i-1][j]==true){
+                dp[i][j]=true;
+            }
+        }
+    }
+    for(int i=0;i<n+1;i++){
+        for(int j=0;j<sum+1;j++){
+            System.out.print(" "+dp[i][j]);
+        }
+        System.out.println();
+    }
+    return dp[n][sum];
+
+}
 public static int Unbound_knapsack(int val[], int wt[], int W ){
     int n=val.length;
     int[][] dp=new int[n+1][W+1];
@@ -106,7 +134,40 @@ public static int Unbound_knapsack(int val[], int wt[], int W ){
     return dp[n][W];
 }
 
+public static int findTargetSumWays(int[] nums, int target) {
+        int sum = 0;
+        for (int num : nums) sum += num;
 
+        // Convert problem to subset sum
+        if ((target + sum) % 2 != 0 || Math.abs(target) > sum) return 0;
+        int P = (target + sum) / 2;
+
+        // dp[i][j] = number of ways to get sum j using first i items
+        int n = nums.length;
+        int[][] dp = new int[n + 1][P + 1];
+
+        // Base case: sum 0 can be made by picking nothing
+        for (int i = 0; i <= n; i++) dp[i][0] = 1;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= P; j++) {
+                if (j >= nums[i - 1]) {
+                    dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i - 1]];
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        for(int i=0;i<dp.length;i++){
+        for(int j=0;j<dp[0].length;j++){
+            System.out.print(dp[i][j]+" ");
+        }
+        System.out.println();
+    }
+
+        return dp[n][P];
+    }
 
     public static void main(String[] args) {
      int val[]={15,14,10,45,30};
@@ -120,10 +181,10 @@ public static int Unbound_knapsack(int val[], int wt[], int W ){
             dp[i][j]=-1 ;
         }
     }
-    long start=System.nanoTime();
-    System.out.println(Unbound_knapsack(val, wt, W));
-    long end= System.nanoTime();
-    System.out.println(end-start);
+    int[] arr={1,1,1,1,1};
+    int sum=3;
+
+    System.out.println(findTargetSumWays(arr,sum));
  
  }   
 }
