@@ -65,6 +65,26 @@ public class Dp3 {
             return dp[n][m]=Math.max(ans1, ans2);
         }
     }
+
+    public static int lcs3(String s1,String s2,int n, int w){
+        int dp[][]= new int[n+1][w+1];
+
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<w+1;j++){
+                //check if char matches
+                if(s1.charAt(i-1)==s2.charAt(j-1)){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }else{
+                    //not matches
+                    int ans1=dp[i-1][j];
+                    int ans2=dp[i][j-1];
+                    dp[i][j]=Math.max(ans1, ans2);
+                }
+            }
+        }
+
+        return dp[n][w];
+    }
     
     public static void main(String[] args) {
         // int[] coins = {1, 2, 5};
@@ -83,11 +103,13 @@ public class Dp3 {
         int m=s2.length();
 
         int[][] dp=new int[n+1][m+1];
-        for(int i=0;i<n+1;i++){
-            for(int j=0;j<m+1;j++){
-                dp[i][j]=-1;
-            }
-        }
-        System.out.println("LCS length: " + lcs2(s1, s2, n, m,dp));
+        // for(int i=0;i<n+1;i++){
+        //     for(int j=0;j<m+1;j++){
+        //         dp[i][j]=-1;
+        //     }
+        // }
+        System.out.println("LCS length: " + lcs3(s1, s2, n, m));
+
+        
     }
 }
