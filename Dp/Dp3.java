@@ -33,14 +33,36 @@ public class Dp3 {
 
         return dp[n][rodLen];
     }
+
+
+    public static int lcs(String s1,String s2, int n,int m){
+        if(n==0 || m==0){
+            return 0;
+        }
+
+        if(s1.charAt(n-1)==s2.charAt(m-1)){
+            return 1+lcs(s1,s2,n-1,m-1);
+        }else{
+            int ans1=lcs(s1,s2,n-1,m);
+            int ans2=lcs(s1, s2, n, m-1);
+            return Math.max(ans1, ans2);
+        }
+    }
     public static void main(String[] args) {
         // int[] coins = {1, 2, 5};
         // int amount = 5;
         // System.out.println("Number of ways to make change: " + coinChange(coins, amount));
         
-        int[] length= {1,2,3,4,5,6,7,8};
-        int price[]= {1,5,8,9,10,17,17,20};
-        int rodLen = 8;
-        System.out.println("Maximum profit from rod cutting: " + rodCutting(length, price, rodLen));
+        // int[] length= {1,2,3,4,5,6,7,8};
+        // int price[]= {1,5,8,9,10,17,17,20};
+        // int rodLen = 8;
+        // System.out.println("Maximum profit from rod cutting: " + rodCutting(length, price, rodLen));
+
+
+        String s1="abcde";
+        String s2="ace";
+        int n=s1.length();
+        int m=s2.length();
+        System.out.println("LCS length: " + lcs(s1, s2, n, m));
     }
 }
